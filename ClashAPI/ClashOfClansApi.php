@@ -3,6 +3,7 @@
 namespace ClashApi
 {
     use ClashApi\DataAccessLayer\WebClient;
+    use \Exception;
     use ClashApi\Models\Player;
 
     class ClashOfClansApi
@@ -17,7 +18,21 @@ namespace ClashApi
          */
         public function __construct($apiKey)
         {
+            if ( strlen($apiKey) == 0 )
+                throw new Exception('$apiKey cannot be null!');
+
             $this->webClient = new WebClient($apiKey);
+        }
+
+        /**
+         * 
+         * @var string  The player's tag (with the hasttag)
+         */
+        public function getPlayerByTag($tag)
+        {
+            $response = $this->webClient->sendRequest('/players/' . $tag);
+
+            return new Player($response);
         }
     }
 }

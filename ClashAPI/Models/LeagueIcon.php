@@ -19,7 +19,10 @@ namespace ClashApi\Models
         {
             $this->tiny = new Url($stdClass->tiny);
             $this->small = new Url($stdClass->small);
-            $this->medium = new Url($stdClass->medium);
+
+            // Unranked League doesn't have medium icon
+            if ( isset($stdClass->medium) )
+                $this->medium = new Url($stdClass->medium);
         }
     }
 }

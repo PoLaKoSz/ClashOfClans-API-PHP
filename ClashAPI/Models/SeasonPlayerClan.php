@@ -2,14 +2,22 @@
 
 namespace ClashApi\Models
 {
-    use ClashApi\Models\SeasonPlayerClan;
-
-    class Clan extends SeasonPlayerClan
+    class SeasonPlayerClan
     {
         /**
-         * @var int
+         * @var string
          */
-        public $clanLevel;
+        public $tag;
+
+        /**
+         * @var string
+         */
+        public $name;
+
+        /**
+         * @var ClanBadge
+         */
+        public $badge;
 
         /**
          * @param stdClass
@@ -18,7 +26,6 @@ namespace ClashApi\Models
         {
             $this->tag = $stdClass->tag;
             $this->name = $stdClass->name;
-            $this->clanLevel = $stdClass->clanLevel;
             $this->badge = new ClanBadge($stdClass->badgeUrls);
         }
     }

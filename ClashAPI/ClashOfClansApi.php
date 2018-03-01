@@ -4,6 +4,11 @@ namespace ClashApi
 {
     use ClashApi\DataAccessLayer\WebClient;
     use ClashApi\Models\League;
+    use ClashApi\Models\Location;
+    use ClashApi\Models\LocationClan;
+    use ClashApi\Models\LocationPlayer;
+    use ClashApi\Models\LocationVersusClan;
+    use ClashApi\Models\LocationVersusPlayer;
     use ClashApi\Models\Paging;
     use ClashApi\Models\Player;
     use ClashApi\Models\SearchFilter;
@@ -31,7 +36,8 @@ namespace ClashApi
         }
 
         /**
-         * @var string  The player's tag (with the hasttag)
+         * @var    string  $tag  The player's tag (with the hasttag)
+         * @return Player
          */
         public function getPlayerByTag($tag)
         {
@@ -48,7 +54,7 @@ namespace ClashApi
          */
         public function getLeagues($filter = null)
         {
-            $response = $this->webClient->sendRequest('/leagues' .  $this->filterAppendToUrl($filter));
+            $response = $this->webClient->sendRequest('/leagues' . $this->filterAppendToUrl($filter));
 
             for ($index = 0; $index < count($response->items); $index++)
                 $response->items[$index] = new League($response->items[$index]);
@@ -76,11 +82,11 @@ namespace ClashApi
          * 
          * @var    int           $leagueId  id of the League
          * @param  SearchFilter  $filter
-         * @return array         of League objects
+         * @return array         of Season objects
          */
         public function getLeagueSeasons($leagueId, $filter = null)
         {
-            $response = $this->webClient->sendRequest('/leagues/' . $leagueId . '/seasons' .  $this->filterAppendToUrl($filter));            
+            $response = $this->webClient->sendRequest('/leagues/' . $leagueId . '/seasons' . $this->filterAppendToUrl($filter));
 
             for ($index = 0; $index < count($response->items); $index++)
                 $response->items[$index] = new Season($response->items[$index]);
@@ -106,6 +112,125 @@ namespace ClashApi
             
             for ($index = 0; $index < count($response->items); $index++)
                 $response->items[$index] = new SeasonPlayer($response->items[$index]);
+
+            $response->paging = new Paging($response->paging);
+
+            return $response;
+        }
+
+        /**
+         * List all available locations
+         * 
+         * @param  SearchFilter  $filter
+         * @return array         of Location objects
+         */
+        public function getLocations($filter = null)
+        {
+            $url = '/locations' . $this->filterAppendToUrl($filter);
+
+            $response = $this->webClient->sendRequest($url);
+            
+            for ($index = 0; $index < count($response->items); $index++)
+                $response->items[$index] = new Location($response->items[$index]);
+
+            $response->paging = new Paging($response->paging);
+
+            return $response;
+        }
+
+        /**
+         * Get information about specific location
+         * 
+         * @param  int       $locationId
+         * @return Location
+         */
+        public function getLocationById($locationId)
+        {
+            $url = '/locations/' . $locationId;
+
+            $response = $this->webClient->sendRequest($url);
+
+            return new Location($response);
+        }
+
+        /**
+         * Get clan rankings for a specific location
+         * 
+         * @param  int           $locationId
+         * @param  SearchFilter  $filter
+         * @return array         of LocationClan objects
+         */
+        public function getLocationClanRankings($locationId, $filter = null)
+        {
+            $url = '/locations/' . $locationId . '/rankings/clans' . $this->filterAppendToUrl($filter);
+
+            $response = $this->webClient->sendRequest($url);
+            
+            for ($index = 0; $index < count($response->items); $index++)
+                $response->items[$index] = new LocationClan($response->items[$index]);
+
+            $response->paging = new Paging($response->paging);
+
+            return $response;
+        }
+
+        /**
+         * Get player rankings for a specific location
+         * 
+         * @param  int           $locationId
+         * @param  SearchFilter  $filter
+         * @return array         of LocationPlayer objects
+         */
+        public function getLocationPlayerRankings($locationId, $filter = null)
+        {
+            $url = '/locations/' . $locationId . '/rankings/players' . $this->filterAppendToUrl($filter);
+
+            $response = $this->webClient->sendRequest($url);
+            
+            for ($index = 0; $index < count($response->items); $index++)
+                $response->items[$index] = new LocationPlayer($response->items[$index]);
+
+            $response->paging = new Paging($response->paging);
+
+            return $response;
+        }
+
+        /**
+         * Get clan versus rankings for a specific location
+         * 
+         * @param  int           $locationId
+         * @param  SearchFilter  $filter
+         * @return array         of LocationVersusClan objects
+         */
+        public function getLocationClanVersusRankings($locationId, $filter = null)
+        {
+            $url = '/locations/' . $locationId . '/rankings/clans-versus' . $this->filterAppendToUrl($filter);
+
+            $response = $this->webClient->sendRequest($url);
+            
+            for ($index = 0; $index < count($response->items); $index++)
+                $response->items[$index] = new LocationVersusClan($response->items[$index]);
+
+            $response->paging = new Paging($response->paging);
+
+            return $response;
+        }
+
+        /**
+         * Get player rankings for a specific location
+         * 
+         * @param  int           $locationId
+         * @param  SearchFilter  $filter
+         * @return array         of LocationVersusPlayer objects
+         */
+        public function getLocationPlayerVersusRankings($locationId, $filter = null)
+        {
+            $url = '/locations/' . $locationId . '/rankings/players-versus' . $this->filterAppendToUrl($filter);
+
+            $response = $this->webClient->sendRequest($url);
+            
+            for ($index = 0; $index < count($response->items); $index++)
+                $response->items[$index] = new LocationVersusPlayer($response->items[$index]);
 
             $response->paging = new Paging($response->paging);
 

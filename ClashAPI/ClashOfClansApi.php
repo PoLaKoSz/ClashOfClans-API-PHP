@@ -9,6 +9,7 @@ namespace ClashApi
     use ClashApi\Models\SearchFilter;
     use ClashApi\Models\Season;
     use ClashApi\Models\SeasonPlayer;
+    use ClashApi\Models\SeasonPeriod;
     use \Exception;
 
     class ClashOfClansApi
@@ -90,16 +91,16 @@ namespace ClashApi
         }
 
         /**
-         * Get a league season rankings. Note that league season information is available only for Legend League
+         * Get a league season rankings. Note that league season information is available only for Legend League (ID: 29000022)
          * 
          * @param  int           $leagueId
-         * @param  string        $seasonTime
+         * @param  SeasonPeriod  $seasonId
          * @param  SearchFilter  $filter
-         * @return array         of Player objects
+         * @return array         of SeasonPlayer objects
          */
-        public function getLeagueSeason($leagueId, $seasonTime, $filter = null)
+        public function getLeagueSeason($leagueId, SeasonPeriod $seasonId, $filter = null)
         {
-            $url = '/leagues/' . $leagueId . '/seasons/' . $seasonTime .  $this->filterAppendToUrl($filter);
+            $url = '/leagues/' . $leagueId . '/seasons/' . $seasonId . $this->filterAppendToUrl($filter);
 
             $response = $this->webClient->sendRequest($url);
             

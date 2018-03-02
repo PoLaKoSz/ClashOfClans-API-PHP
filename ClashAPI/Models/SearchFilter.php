@@ -4,6 +4,9 @@ namespace ClashApi\Models
 {
     class SearchFilter
     {
+        /**
+         * @var int
+         */
         public $limit;
 
         /**

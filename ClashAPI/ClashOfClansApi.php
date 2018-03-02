@@ -3,6 +3,8 @@
 namespace ClashApi
 {
     use ClashApi\DataAccessLayer\WebClient;
+    use ClashApi\Models\DetailedClan;
+    use ClashApi\Models\DetailedClanPlayer;    
     use ClashApi\Models\League;
     use ClashApi\Models\Location;
     use ClashApi\Models\LocationClan;
@@ -11,10 +13,13 @@ namespace ClashApi
     use ClashApi\Models\LocationVersusPlayer;
     use ClashApi\Models\Paging;
     use ClashApi\Models\Player;
+    use ClashApi\Models\SearchClan;
     use ClashApi\Models\SearchFilter;
     use ClashApi\Models\Season;
     use ClashApi\Models\SeasonPlayer;
     use ClashApi\Models\SeasonPeriod;
+    use ClashApi\Models\Warlog;
+    use ClashApi\Models\WarDetails;
     use \Exception;
 
     class ClashOfClansApi
@@ -238,6 +243,98 @@ namespace ClashApi
         }
 
         /**
+         * Search all clans by name and/or filtering the results using various criteria
+         * 
+         * @param  ClanSearchFilter  $filter
+         * @return array             of SearchClan objects
+         */
+        public function getClans($filter = null)
+        {
+            $url = '/clans' . $this->filterAppendToUrl($filter);
+            
+            $response = $this->webClient->sendRequest($url);
+            
+            for ($index = 0; $index < count($response->items); $index++)
+                $response->items[$index] = new SearchClan($response->items[$index]);
+
+            $response->paging = new Paging($response->paging);
+
+            return $response;
+        }
+
+        /**
+         * Get information about a single clan by clan tag
+         * 
+         * @param  string        $clanTag
+         * @return DetailedClan
+         */
+        public function getClanyByTag($clanTag)
+        {
+            $url = '/clans/' . $clanTag;
+            
+            $response = $this->webClient->sendRequest($url);
+
+            return new DetailedClan($response);
+        }
+
+        /**
+         * Get information about a single clan by clan tag
+         * 
+         * @param  string        $clanTag
+         * @param  SearchFilter  $filter
+         * @return array         of DetailedClanPlayer objects
+         */
+        public function getClanMembers($clanTag, $filter = null)
+        {
+            $url = '/clans/' . $clanTag . '/members' . $this->filterAppendToUrl($filter);
+            
+            $response = $this->webClient->sendRequest($url);
+
+            for ($index = 0; $index < count($response->items); $index++)
+                $response->items[$index] = new DetailedClanPlayer($response->items[$index]);
+
+            $response->paging = new Paging($response->paging);
+
+            return $response;
+        }
+
+        /**
+         * Get information about a single clan by clan tag
+         * 
+         * @param  string        $clanTag
+         * @param  SearchFilter  $filter
+         * @return array         of DetailedClanPlayer objects
+         */
+        public function getClanWarlog($clanTag, $filter = null)
+        {
+            $url = '/clans/' . $clanTag . '/warlog' . $this->filterAppendToUrl($filter);
+            
+            $response = $this->webClient->sendRequest($url);
+
+            for ($index = 0; $index < count($response->items); $index++)
+                $response->items[$index] = new Warlog($response->items[$index]);
+
+            $response->paging = new Paging($response->paging);
+
+            return $response;
+        }
+
+        /**
+         * Get information about a single clan by clan tag
+         * 
+         * @param  string  $clanTag
+         * @return array   of DetailedClanPlayer objects
+         */
+        public function getClanCurrentWar($clanTag)
+        {
+            $url = '/clans/' . $clanTag . '/currentwar';
+            
+            $response = $this->webClient->sendRequest($url);
+
+            return new WarDetails( $response );
+        }
+
+        /**
          * @param  SearchFilter  $filter
          * @return string
          */
@@ -260,7 +357,7 @@ namespace ClashApi
                     else
                         $appendable .= '?';
 
-                    $appendable .= $key . '=' . $value;
+                    $appendable .= $key . '=' . urlencode($value);
                 }
             }
 

@@ -26,12 +26,12 @@ namespace ClashApi\DataAccessLayer
 			$url = $this->baseURL . $this->encodeHashTag($url);
 
 			$ch = curl_init();
-			
+
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-				'authorization: Bearer '.$this->apiKey
+				'authorization: Bearer '. $this->apiKey,
 			));
 			
 			$response = curl_exec($ch);
@@ -43,6 +43,8 @@ namespace ClashApi\DataAccessLayer
 			}
 			
 			curl_close($ch);
+
+			$response = $this->escapeJsonString($response);
 			
 			return json_decode($response);
 		}
@@ -54,6 +56,22 @@ namespace ClashApi\DataAccessLayer
 		private function encodeHashTag($url)
 		{
 			return str_replace("#", urlencode('#'), $url);
+		}
+
+		/**
+		 * Escape all invalid character
+		 * 
+		 * @param string  $value  string wthat needs to be escaped
+		 * @param string
+		 */
+		private function escapeJsonString(string $value)
+		{
+			$escapers	  = array("<");
+			$replacements = array("&lt;");
+			
+			$result = str_replace($escapers, $replacements, $value);
+
+			return $result;
 		}
 	}
 }

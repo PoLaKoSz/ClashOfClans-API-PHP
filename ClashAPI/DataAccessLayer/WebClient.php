@@ -9,7 +9,7 @@ namespace ClashApi\DataAccessLayer
 		private $apiKey;
 		private $baseURL;
 		
-		public function __construct($apiKey)
+		public function __construct(string $apiKey)
 		{
 			$this->baseURL = 'https://api.clashofclans.com/v1';
 			$this->apiKey = $apiKey;
@@ -21,7 +21,7 @@ namespace ClashApi\DataAccessLayer
 		 * @param  string    $url      
 		 * @return stdClass  response  from API
 		 */
-		public function sendRequest($url)
+		public function sendRequest(string $url)
 		{
 			$url = $this->baseURL . $this->encodeHashTag($url);
 
@@ -53,7 +53,7 @@ namespace ClashApi\DataAccessLayer
 		 * @param string   $url  what needs to be encoded
 		 * @var   string         encoded url
 		 */
-		private function encodeHashTag($url)
+		private function encodeHashTag(string $url)
 		{
 			return str_replace("#", urlencode('#'), $url);
 		}

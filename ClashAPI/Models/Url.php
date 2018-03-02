@@ -12,7 +12,7 @@ namespace ClashApi\Models;
         /**
          * @param string
          */
-        public function __construct($url)
+        public function __construct(string $url)
         {
             $this->url = $url;
         }

@@ -32,7 +32,7 @@ namespace ClashApi
         /**
          * @var string  $apikey  Every call to the Clash Of Clans API needs to contain an Api Key
          */
-        public function __construct($apiKey)
+        public function __construct(string $apiKey)
         {
             if ( strlen($apiKey) == 0 )
                 throw new Exception('$apiKey cannot be null!');
@@ -44,7 +44,7 @@ namespace ClashApi
          * @var    string  $tag  The player's tag (with the hasttag)
          * @return Player
          */
-        public function getPlayerByTag($tag)
+        public function getPlayerByTag(string $tag)
         {
             $response = $this->webClient->sendRequest('/players/' . $tag);
 
@@ -57,7 +57,7 @@ namespace ClashApi
          * @param  SearchFilter  $filter
          * @return array         of League objects
          */
-        public function getLeagues($filter = null)
+        public function getLeagues(SearchFilter $filter = null)
         {
             $response = $this->webClient->sendRequest('/leagues' . $this->filterAppendToUrl($filter));
 
@@ -75,7 +75,7 @@ namespace ClashApi
          * @var    int     $leagueId  id of the League
          * @return League  object
          */
-        public function getLeagueById($leagueId)
+        public function getLeagueById(int $leagueId)
         {
             $response = $this->webClient->sendRequest('/leagues/' . $leagueId);
 
@@ -89,7 +89,7 @@ namespace ClashApi
          * @param  SearchFilter  $filter
          * @return array         of Season objects
          */
-        public function getLeagueSeasons($leagueId, $filter = null)
+        public function getLeagueSeasons(int $leagueId, SearchFilter $filter = null)
         {
             $response = $this->webClient->sendRequest('/leagues/' . $leagueId . '/seasons' . $this->filterAppendToUrl($filter));
 
@@ -109,7 +109,7 @@ namespace ClashApi
          * @param  SearchFilter  $filter
          * @return array         of SeasonPlayer objects
          */
-        public function getLeagueSeason($leagueId, SeasonPeriod $seasonId, $filter = null)
+        public function getLeagueSeason(int $leagueId, SeasonPeriod $seasonId, SearchFilter $filter = null)
         {
             $url = '/leagues/' . $leagueId . '/seasons/' . $seasonId . $this->filterAppendToUrl($filter);
 
@@ -129,7 +129,7 @@ namespace ClashApi
          * @param  SearchFilter  $filter
          * @return array         of Location objects
          */
-        public function getLocations($filter = null)
+        public function getLocations(SearchFilter $filter = null)
         {
             $url = '/locations' . $this->filterAppendToUrl($filter);
 
@@ -149,7 +149,7 @@ namespace ClashApi
          * @param  int       $locationId
          * @return Location
          */
-        public function getLocationById($locationId)
+        public function getLocationById(int $locationId)
         {
             $url = '/locations/' . $locationId;
 
@@ -165,7 +165,7 @@ namespace ClashApi
          * @param  SearchFilter  $filter
          * @return array         of LocationClan objects
          */
-        public function getLocationClanRankings($locationId, $filter = null)
+        public function getLocationClanRankings(int $locationId, SearchFilter $filter = null)
         {
             $url = '/locations/' . $locationId . '/rankings/clans' . $this->filterAppendToUrl($filter);
 
@@ -186,7 +186,7 @@ namespace ClashApi
          * @param  SearchFilter  $filter
          * @return array         of LocationPlayer objects
          */
-        public function getLocationPlayerRankings($locationId, $filter = null)
+        public function getLocationPlayerRankings(int $locationId, SearchFilter $filter = null)
         {
             $url = '/locations/' . $locationId . '/rankings/players' . $this->filterAppendToUrl($filter);
 
@@ -207,7 +207,7 @@ namespace ClashApi
          * @param  SearchFilter  $filter
          * @return array         of LocationVersusClan objects
          */
-        public function getLocationClanVersusRankings($locationId, $filter = null)
+        public function getLocationClanVersusRankings(int $locationId, SearchFilter $filter = null)
         {
             $url = '/locations/' . $locationId . '/rankings/clans-versus' . $this->filterAppendToUrl($filter);
 
@@ -228,7 +228,7 @@ namespace ClashApi
          * @param  SearchFilter  $filter
          * @return array         of LocationVersusPlayer objects
          */
-        public function getLocationPlayerVersusRankings($locationId, $filter = null)
+        public function getLocationPlayerVersusRankings(int $locationId, SearchFilter $filter = null)
         {
             $url = '/locations/' . $locationId . '/rankings/players-versus' . $this->filterAppendToUrl($filter);
 
@@ -248,7 +248,7 @@ namespace ClashApi
          * @param  ClanSearchFilter  $filter
          * @return array             of SearchClan objects
          */
-        public function getClans($filter = null)
+        public function getClans(ClanSearchFilter $filter = null)
         {
             $url = '/clans' . $this->filterAppendToUrl($filter);
             
@@ -268,7 +268,7 @@ namespace ClashApi
          * @param  string        $clanTag
          * @return DetailedClan
          */
-        public function getClanyByTag($clanTag)
+        public function getClanyByTag(string $clanTag)
         {
             $url = '/clans/' . $clanTag;
             
@@ -284,7 +284,7 @@ namespace ClashApi
          * @param  SearchFilter  $filter
          * @return array         of DetailedClanPlayer objects
          */
-        public function getClanMembers($clanTag, $filter = null)
+        public function getClanMembers(string $clanTag, SearchFilter $filter = null)
         {
             $url = '/clans/' . $clanTag . '/members' . $this->filterAppendToUrl($filter);
             
@@ -305,7 +305,7 @@ namespace ClashApi
          * @param  SearchFilter  $filter
          * @return array         of DetailedClanPlayer objects
          */
-        public function getClanWarlog($clanTag, $filter = null)
+        public function getClanWarlog(string $clanTag, SearchFilter $filter = null)
         {
             $url = '/clans/' . $clanTag . '/warlog' . $this->filterAppendToUrl($filter);
             
@@ -325,7 +325,7 @@ namespace ClashApi
          * @param  string  $clanTag
          * @return array   of DetailedClanPlayer objects
          */
-        public function getClanCurrentWar($clanTag)
+        public function getClanCurrentWar(string $clanTag)
         {
             $url = '/clans/' . $clanTag . '/currentwar';
             
@@ -335,7 +335,7 @@ namespace ClashApi
         }
 
         /**
-         * @param  SearchFilter  $filter
+         * @param  SearchFilter or ClanSearchFilter  $filter
          * @return string
          */
         private function filterAppendToUrl($filter = null)

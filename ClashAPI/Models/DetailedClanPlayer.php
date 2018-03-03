@@ -2,18 +2,10 @@
 
 namespace ClashApi\Models
 {
-    class DetailedClanPlayer
+    use ClashApi\Models\MinimalPlayer;
+    
+    class DetailedClanPlayer extends MinimalPlayer
     {
-        /**
-         * @var string
-         */
-        public $tag;
-
-        /**
-         * @var string
-         */
-        public $name;
-        
         /**
          * @var int
          */
@@ -64,8 +56,8 @@ namespace ClashApi\Models
          */
         public function __construct($stdClass)
         {
-            $this->tag                = $stdClass->tag;
-            $this->name               = $stdClass->name;
+            parent::__construct( $stdClass );
+            
             $this->expLevel           = $stdClass->expLevel;
             $this->league             = new League($stdClass->league);
             $this->trophies           = $stdClass->trophies;

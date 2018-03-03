@@ -10,17 +10,48 @@ namespace ClashApi\Models
         /**
          * @var int
          */
-        public $clanLevel;
         public $clanVersusPoints;
         public $type;
+
+        /**
+         * @var int
+         */
         public $requiredTrophies;
         public $warFrequency;
+        
+        /**
+         * @var int
+         */
         public $warWinStreak;
+        
+        /**
+         * @var int
+         */
         public $warWins;
+        
+        /**
+         * @var int
+         */
         public $warTies;
+        
+        /**
+         * @var int
+         */
         public $warLosses;
+        
+        /**
+         * @var boolean
+         */
         public $isWarLogPublic;
+        
+        /**
+         * @var string
+         */
         public $description;
+
+        /**
+         * @var array  of DetailedClanPlayer objects
+         */
         public $memberList = array();
 
         /**
@@ -30,7 +61,6 @@ namespace ClashApi\Models
         {
             parent::__construct($stdClass);
 
-            $this->clanLevel        = $stdClass->clanLevel;
             $this->clanVersusPoints = $stdClass->clanVersusPoints;
             $this->type             = $stdClass->type;
             $this->requiredTrophies = $stdClass->requiredTrophies;

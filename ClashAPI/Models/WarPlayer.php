@@ -2,18 +2,10 @@
 
 namespace ClashApi\Models
 {
-    class WarPlayer
-    {
-        /**
-         * @var string
-         */
-        public $tag;
+    use ClashApi\Models\MinimalPlayer;
 
-        /**
-         * @var string
-         */
-        public $name;
-        
+    class WarPlayer extends MinimalPlayer
+    {
         /**
          * @var int
          */
@@ -31,8 +23,8 @@ namespace ClashApi\Models
          */
         public function __construct($stdClass)
         {
-            $this->tag             = $stdClass->tag;
-            $this->name            = $stdClass->name;
+            parent::__construct( $stdClass );
+            
             $this->townhallLevel   = $stdClass->townhallLevel;
             $this->mapPosition     = $stdClass->mapPosition;
             $this->opponentAttacks = $stdClass->opponentAttacks;

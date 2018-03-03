@@ -3,22 +3,13 @@
 namespace ClashApi\Models
 {
     use ClashApi\Models\Achievement;
-    use ClashApi\Models\Troop;
+    use ClashApi\Models\MinimalPlayer;
     use ClashApi\Models\Heroe;
+    use ClashApi\Models\Troop;
     use ClashApi\Models\Spell;
 
-    class Player
+    class Player extends MinimalPlayer
     {
-        /**
-         * @var string
-         */
-        public $tag;
-
-        /**
-         * @var string
-         */
-        public $name;
-        
         /**
          * @var int
          */
@@ -129,8 +120,8 @@ namespace ClashApi\Models
          */
         public function __construct($stdClass)
         {
-            $this->tag                = $stdClass->tag;
-            $this->name               = $stdClass->name;
+            parent::__construct( $stdClass );
+            
             $this->expLevel           = $stdClass->expLevel;
             $this->league             = new League($stdClass->league);
             $this->trophies           = $stdClass->trophies;

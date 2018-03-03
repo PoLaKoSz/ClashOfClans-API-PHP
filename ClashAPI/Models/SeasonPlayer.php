@@ -2,23 +2,10 @@
 
 namespace ClashApi\Models
 {
-    class SeasonPlayer
-    {
-        /**
-         * @var string
-         */
-        public $tag;
+    use ClashApi\Models\LocationVersusPlayer;
 
-        /**
-         * @var string
-         */
-        public $name;
-        
-        /**
-         * @var int
-         */
-        public $expLevel;
-        
+    class SeasonPlayer extends LocationVersusPlayer
+    {
         /**
          * @var int
          */
@@ -33,11 +20,6 @@ namespace ClashApi\Models
          * @var int
          */
         public $defenseWins;
-        
-        /**
-         * @var SeasonPlayerClan
-         */
-        public $clan;
 
         /**
          * @var int
@@ -49,13 +31,11 @@ namespace ClashApi\Models
          */
         public function __construct($stdClass)
         {
-            $this->tag         = $stdClass->tag;
-            $this->name        = $stdClass->name;
-            $this->expLevel    = $stdClass->expLevel;
+            parent::__construct( $stdClass );
+            
             $this->trophies    = $stdClass->trophies;            
             $this->attackWins  = $stdClass->attackWins;
             $this->defenseWins = $stdClass->defenseWins;
-            $this->clan        = new SeasonPlayerClan($stdClass->clan);
             $this->rank        = $stdClass->rank;
         }
     }

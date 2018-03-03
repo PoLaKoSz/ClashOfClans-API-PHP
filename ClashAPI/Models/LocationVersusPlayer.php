@@ -2,18 +2,10 @@
 
 namespace ClashApi\Models
 {
-    class LocationVersusPlayer
-    {
-        /**
-         * @var string
-         */
-        public $tag;
+    use ClashApi\Models\MinimalPlayer;
 
-        /**
-         * @var string
-         */
-        public $name;
-        
+    class LocationVersusPlayer extends MinimalPlayer
+    {
         /**
          * @var int
          */
@@ -29,8 +21,8 @@ namespace ClashApi\Models
          */
         public function __construct($stdClass)
         {
-            $this->tag                = $stdClass->tag;
-            $this->name               = $stdClass->name;
+            parent::__construct( $stdClass );
+            
             $this->expLevel           = $stdClass->expLevel;
             $this->clan               = new SeasonPlayerClan($stdClass->clan);
 

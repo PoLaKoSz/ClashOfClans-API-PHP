@@ -2,31 +2,10 @@
 
 namespace ClashApi\Models
 {
-    use ClashApi\Models\Clan;
-    use ClashApi\Models\Location;
+    use ClashApi\Models\LocationClan;
 
-    class LocationVersusClan extends Clan
+    class LocationVersusClan extends LocationClan
     {
-        /**
-         * @var Location
-         */
-        public $location;
-        
-        /**
-         * @var int
-         */
-        public $members;
-        
-        /**
-         * @var int
-         */
-        public $rank;
-        
-        /**
-         * @var int
-         */
-        public $previousRank;
-
         /**
          * @var int
          */
@@ -38,11 +17,7 @@ namespace ClashApi\Models
         public function __construct($stdClass)
         {
             parent::__construct($stdClass);
-
-            $this->location = new Location($stdClass->location);
-            $this->members = $stdClass->members;
-            $this->rank = $stdClass->rank;
-            $this->previousRank = $stdClass->previousRank;
+            
             $this->clanVersusPoints = $stdClass->clanVersusPoints;
         }
     }

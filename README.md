@@ -1,115 +1,65 @@
-# ClashOfClans-API-PHP
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/1n9i9c7om/ClashOfClans-API-PHP/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/1n9i9c7om/ClashOfClans-API-PHP/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/1n9i9c7om/ClashOfClans-API-PHP/badges/build.png?b=master)](https://scrutinizer-ci.com/g/1n9i9c7om/ClashOfClans-API-PHP/build-status/master)  
+# Clash Of Clans API
 
-This is a wrapper for SuperCell's official Clash Of Clans-API located at https://developer.clashofclans.com/#/
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Software License][ico-license]](LICENSE.md)
+[![Build Status][ico-travis]][link-travis]
+[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
+[![Quality Score][ico-code-quality]][link-code-quality]
+[![Total Downloads][ico-downloads]][link-downloads]
 
-Before trying to use this, you have to create an account and request a token on their website. After that, **change the token** located in the **API.class.php** to yours.
+## Install
 
-I'm working on the documentation, for now, you have to figure out how to use it for yourself. 
-There's an example in the repository, though.
+Via Composer
 
-Live-Demo of example: http://1n9i9c7om.com/coc/test.php
-Keep in mind I'm not a web designer, this page is just to show how this wrapper works.
-
-## Requirements
-PHP 5 or higher with cURL support.
+``` bash
+$ composer require PoLáKoSz/ClashOfClansAPI
+```
 
 ## Usage
-### Search for clans
-```php
-$api = new ClashOfClans();
-$results = $api->searchClanByName("foxforcefürth"); //returns an array containing all search results
-$clan = new CoC_Clan($results->items[0]); //gets the first result from the array
+
+``` php
+$api = new PoLáKoSz\ClashOfClansAPI();
+echo $skeleton->echoPhrase('Hello, League!');
 ```
 
-### Get Clan Details
-```php
-$clan = new CoC_Clan("#22UCCU0J"); 
+## Change log
 
-$clan->getName(); //returns foxforcefürth 
-$clan->getLevel(); //returns 5
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+## Testing
+
+``` bash
+$ composer test
 ```
 
-### Get information about the clan leader
-```php
-$clan = new CoC_Clan("#22UCCU0J");
-$members = $clan->getAllMembers();
+## Contributing
 
-foreach($members as $member)
-{
-	$member = new CoC_Member($member); //convert member into a CoC_Member object
-	if($member->getRole() == "leader")
-	{
-		echo $member->getName(); //returns Lalato;
-		echo $member->getLevel(); //returns 131 
-		break; //leave the foreach after the leader was found, as there's only one per clan
-	}
-}
-```
+Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
 
-Some more example scripts (including Warlog usage) are included in the "Examples"-folder inside this repository.
+## Security
 
-## Documentation
+If you discover any security related issues, please email polakosz@freemail.hu instead of using the issue tracker.
 
-**API.class.php** - gets the information from the API and sends the requests to Supercell's Servers.  
-* #sendRequest($url);  
-* +searchClanByName($searchString);  
-* +searchClan($parameters);
-* +getClanByTag($tag);  
-* +getClanMembersByTag($tag);  
-* +getLocationList();  
-* +getLocationInfo();  
-* +getLeagueList();  
-* +getRankList();  
+## Credits
 
-**Clan.class.php** - gets information about a clan by using a tag  
-* +__construct($tagOrClass);  
-* #getClan();
-* +getTag();  
-* +getName();  
-* +getDescription();  
-* +getType();  
-* +getLocationId();  
-* +getBadgeUrl($size);  
-* +getWarFrequency();  
-* +getLevel();  
-* +getWarWins();  
-* +getWarWinStreak();
-* +getPoints();  
-* +getRequiredTrophies();  
-* +getMemberCount();  
-* +getMemberByIndex($index);  
-* +getAllMembers();  
-* +getMemberByName($name);  
-  
-**League.class.php** - gets information about a league by using a league ID.  
-* +__construct($league);  
-* #getLeague();
-* +setLeagueByName();  
-* +getLeagueIcon(\$size);  
-  
-**Location.class.php** - gets information about a location by using a location ID.  
-* +__construct($location);  
-* #getLocation();
-* +setLocationByName();  
-* +setLocationByCode();
-* +getLocationName();  
-* +isCountry();  
-* +getCountryCode();  
-  
-**Member.class.php** - gets information about a location by using an stdClass returned by *Clan.class.php*  
-* +__construct($memberObj);  
-* +getTag();
-* +getName();  
-* +getRole();  
-* +getLevel();  
-* +getLeagueId();  
-* +getTrophies();  
-* +getClanRank();  
-* +getPreviousClanRank();  
-* +getDonations();  
-* +getDonationsReceived();  
-* +getDonationsRatio();   
+- [Tom PoLáKoSz][link-author]
+- [All Contributors][link-contributors]
 
-\# means protected  
-\+ means public
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+[ico-version]: https://img.shields.io/packagist/v/PoLáKoSz/ClashOfClansAPI.svg?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/PoLáKoSz/ClashOfClansAPI/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/PoLáKoSz/ClashOfClansAPI.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/PoLáKoSz/ClashOfClansAPI.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/PoLáKoSz/ClashOfClansAPI.svg?style=flat-square
+
+[link-packagist]: https://packagist.org/packages/PoLáKoSz/ClashOfClansAPI
+[link-travis]: https://travis-ci.org/PoLáKoSz/ClashOfClansAPI
+[link-scrutinizer]: https://scrutinizer-ci.com/g/PoLáKoSz/ClashOfClansAPI/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/PoLáKoSz/ClashOfClansAPI
+[link-downloads]: https://packagist.org/packages/PoLáKoSz/ClashOfClansAPI
+[link-author]: https://github.com/PoLáKoSz
+[link-contributors]: ../../contributors

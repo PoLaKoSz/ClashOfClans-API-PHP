@@ -1,5 +1,5 @@
 {
-    "name": "PoLáKoSz/ClashOfClansAPI",
+    "name": "polakosz/clash-of-clans-api",
     "type": "library",
     "description": "PHP wrapper for SuperCell's official ClashOfClans API.",
     "keywords": [

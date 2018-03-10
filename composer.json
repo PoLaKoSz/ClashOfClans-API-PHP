@@ -23,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "PoLaKoSz\\ClashOfClansAPI\\": "src"
+            "PoLaKoSz\\CoC_API\\": "src"
         }
     }
 }

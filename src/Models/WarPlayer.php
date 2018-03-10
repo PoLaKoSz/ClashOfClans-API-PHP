@@ -1,8 +1,8 @@
 <?php
 
-namespace ClashApi\Models
+namespace PoLaKoSz\CoC_API\Models
 {
-    use ClashApi\Models\MinimalPlayer;
+    use PoLaKoSz\CoC_API\Models\MinimalPlayer;
 
     class WarPlayer extends MinimalPlayer
     {

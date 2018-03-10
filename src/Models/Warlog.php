@@ -1,10 +1,10 @@
 <?php
 
-namespace ClashApi\Models
+namespace PoLaKoSz\CoC_API\Models
 {
-    use ClashApi\Helpers\TimeConverter;
-    use ClashApi\Models\WarlogClan;
-    use ClashApi\Models\WarlogOpponentClan;    
+    use PoLaKoSz\CoC_API\Helpers\TimeConverter;
+    use PoLaKoSz\CoC_API\Models\WarlogClan;
+    use PoLaKoSz\CoC_API\Models\WarlogOpponentClan;    
 
     class Warlog
     {

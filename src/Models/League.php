@@ -1,8 +1,8 @@
 <?php
 
-namespace ClashApi\Models
+namespace PoLaKoSz\CoC_API\Models
 {
-    use ClashApi\Models\LeagueIcon;
+    use PoLaKoSz\CoC_API\Models\LeagueIcon;
 
     class League
     {

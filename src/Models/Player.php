@@ -1,12 +1,12 @@
 <?php
 
-namespace ClashApi\Models
+namespace PoLaKoSz\CoC_API\Models
 {
-    use ClashApi\Models\Achievement;
-    use ClashApi\Models\MinimalPlayer;
-    use ClashApi\Models\Heroe;
-    use ClashApi\Models\Troop;
-    use ClashApi\Models\Spell;
+    use PoLaKoSz\CoC_API\Models\Achievement;
+    use PoLaKoSz\CoC_API\Models\MinimalPlayer;
+    use PoLaKoSz\CoC_API\Models\Heroe;
+    use PoLaKoSz\CoC_API\Models\Troop;
+    use PoLaKoSz\CoC_API\Models\Spell;
 
     class Player extends MinimalPlayer
     {

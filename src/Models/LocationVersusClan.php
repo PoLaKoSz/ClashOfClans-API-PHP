@@ -1,8 +1,8 @@
 <?php
 
-namespace ClashApi\Models
+namespace PoLaKoSz\CoC_API\Models
 {
-    use ClashApi\Models\LocationClan;
+    use PoLaKoSz\CoC_API\Models\LocationClan;
 
     class LocationVersusClan extends LocationClan
     {

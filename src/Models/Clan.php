@@ -1,8 +1,8 @@
 <?php
 
-namespace ClashApi\Models
+namespace PoLaKoSz\CoC_API\Models
 {
-    use ClashApi\Models\SeasonPlayerClan;
+    use PoLaKoSz\CoC_API\Models\SeasonPlayerClan;
 
     class Clan extends SeasonPlayerClan
     {

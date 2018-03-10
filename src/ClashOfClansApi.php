@@ -1,25 +1,25 @@
 <?php
 
-namespace ClashApi
+namespace PoLaKoSz\CoC_API
 {
-    use ClashApi\DataAccessLayer\WebClient;
-    use ClashApi\Models\DetailedClan;
-    use ClashApi\Models\DetailedClanPlayer;    
-    use ClashApi\Models\League;
-    use ClashApi\Models\Location;
-    use ClashApi\Models\LocationClan;
-    use ClashApi\Models\LocationPlayer;
-    use ClashApi\Models\LocationVersusClan;
-    use ClashApi\Models\LocationVersusPlayer;
-    use ClashApi\Models\Paging;
-    use ClashApi\Models\Player;
-    use ClashApi\Models\SearchClan;
-    use ClashApi\Models\SearchFilter;
-    use ClashApi\Models\Season;
-    use ClashApi\Models\SeasonPlayer;
-    use ClashApi\Models\SeasonPeriod;
-    use ClashApi\Models\Warlog;
-    use ClashApi\Models\WarDetails;
+    use PoLaKoSz\CoC_API\DataAccessLayer\WebClient;
+    use PoLaKoSz\CoC_API\Models\DetailedClan;
+    use PoLaKoSz\CoC_API\Models\DetailedClanPlayer;    
+    use PoLaKoSz\CoC_API\Models\League;
+    use PoLaKoSz\CoC_API\Models\Location;
+    use PoLaKoSz\CoC_API\Models\LocationClan;
+    use PoLaKoSz\CoC_API\Models\LocationPlayer;
+    use PoLaKoSz\CoC_API\Models\LocationVersusClan;
+    use PoLaKoSz\CoC_API\Models\LocationVersusPlayer;
+    use PoLaKoSz\CoC_API\Models\Paging;
+    use PoLaKoSz\CoC_API\Models\Player;
+    use PoLaKoSz\CoC_API\Models\SearchClan;
+    use PoLaKoSz\CoC_API\Models\SearchFilter;
+    use PoLaKoSz\CoC_API\Models\Season;
+    use PoLaKoSz\CoC_API\Models\SeasonPlayer;
+    use PoLaKoSz\CoC_API\Models\SeasonPeriod;
+    use PoLaKoSz\CoC_API\Models\Warlog;
+    use PoLaKoSz\CoC_API\Models\WarDetails;
     use \Exception;
 
     class ClashOfClansApi

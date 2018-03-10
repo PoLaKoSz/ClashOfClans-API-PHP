@@ -1,8 +1,8 @@
 <?php
 
-namespace ClashApi\DataAccessLayer
+namespace PoLaKoSz\CoC_API\DataAccessLayer
 {
-	use ClashApi\Exceptions\ApiException;
+	use PoLaKoSz\CoC_API\Exceptions\ApiException;
 
 	class WebClient
 	{

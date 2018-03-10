@@ -1,6 +1,6 @@
 <?php
 
-namespace ClashApi\Exceptions
+namespace PoLaKoSz\CoC_API\Exceptions
 {
     use Exception;
 

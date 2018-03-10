@@ -1,9 +1,9 @@
 <?php
 
-namespace ClashApi\Models
+namespace PoLaKoSz\CoC_API\Models
 {
-    use ClashApi\Models\Image;
-    use ClashApi\Models\Url;
+    use PoLaKoSz\CoC_API\Models\Image;
+    use PoLaKoSz\CoC_API\Models\Url;
 
     class LeagueIcon extends Image
     {

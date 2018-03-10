@@ -1,8 +1,8 @@
 <?php
 
-namespace ClashApi\Models
+namespace PoLaKoSz\CoC_API\Models
 {
-    use ClashApi\Models\SearchFilter;
+    use PoLaKoSz\CoC_API\Models\SearchFilter;
 
     class ClanSearchFilter extends SearchFilter
     {

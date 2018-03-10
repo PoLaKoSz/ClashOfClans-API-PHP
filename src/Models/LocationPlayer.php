@@ -1,8 +1,8 @@
 <?php
 
-namespace ClashApi\Models
+namespace PoLaKoSz\CoC_API\Models
 {
-    use ClashApi\Models\LocationVersusPlayer;
+    use PoLaKoSz\CoC_API\Models\LocationVersusPlayer;
     
     class LocationPlayer extends LocationVersusPlayer
     {

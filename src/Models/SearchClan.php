@@ -1,9 +1,9 @@
 <?php
 
-namespace ClashApi\Models
+namespace PoLaKoSz\CoC_API\Models
 {
-    use ClashApi\Models\Clan;
-    use ClashApi\Models\Location;
+    use PoLaKoSz\CoC_API\Models\Clan;
+    use PoLaKoSz\CoC_API\Models\Location;
 
     class SearchClan extends Clan
     {

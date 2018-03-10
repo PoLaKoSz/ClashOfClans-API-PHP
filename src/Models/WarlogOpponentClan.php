@@ -1,8 +1,8 @@
 <?php
 
-namespace ClashApi\Models
+namespace PoLaKoSz\CoC_API\Models
 {
-    use ClashApi\Models\Clan;
+    use PoLaKoSz\CoC_API\Models\Clan;
 
     class WarlogOpponentClan extends Clan
     {

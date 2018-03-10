@@ -1,6 +1,6 @@
 <?php
 
-namespace ClashApi\Helpers
+namespace PoLaKoSz\CoC_API\Helpers
 {
     use \DateTime;
     use \DateTimeZone;

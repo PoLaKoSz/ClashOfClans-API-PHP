@@ -1,9 +1,9 @@
 <?php
 
-namespace ClashApi\Models
+namespace PoLaKoSz\CoC_API\Models
 {
-    use ClashApi\Helpers\TimeConverter;
-    use ClashApi\Models\WarDetailsClan;
+    use PoLaKoSz\CoC_API\Helpers\TimeConverter;
+    use PoLaKoSz\CoC_API\Models\WarDetailsClan;
 
     class WarDetails
     {
